@@ -5,8 +5,10 @@ filetype off                  " required
 call plug#begin('~/.vim/plugged')
 
 Plug 'pangloss/vim-javascript'
+Plug 'maxmellon/vim-jsx-pretty'
 Plug 'roxma/nvim-completion-manager'
 Plug 'roxma/nvim-cm-tern',  {'do': 'npm install'}
+Plug 'leafgarland/typescript-vim'
 
 call plug#end()
 
@@ -29,7 +31,6 @@ Plugin 'bling/vim-airline'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'Quramy/tsuquyomi'
 Plugin 'Shougo/vimproc.vim'
-Plugin 'mxw/vim-jsx'
 Plugin 'vim-syntastic/syntastic'
 
 " :Remove :Rename etc
