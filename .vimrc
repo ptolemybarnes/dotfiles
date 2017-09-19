@@ -9,6 +9,8 @@ Plug 'maxmellon/vim-jsx-pretty'
 Plug 'roxma/nvim-completion-manager'
 Plug 'roxma/nvim-cm-tern',  {'do': 'npm install'}
 Plug 'leafgarland/typescript-vim'
+Plug 'w0rp/ale'
+Plug 'calebeby/ncm-css'
 
 call plug#end()
 
@@ -31,7 +33,6 @@ Plugin 'bling/vim-airline'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'Quramy/tsuquyomi'
 Plugin 'Shougo/vimproc.vim'
-Plugin 'vim-syntastic/syntastic'
 
 " :Remove :Rename etc
 Plugin 'tpope/vim-eunuch'
@@ -136,7 +137,7 @@ let g:airline_left_sep=' '
 let g:airline_right_sep=' '
 
 "" ctrlp config. (ignore compiled js within dist)
-let g:ctrlp_custom_ignore = 'node_modules\|bower_components\|dist\|coverage\|temp'
+let g:ctrlp_custom_ignore = 'node_modules\|bower_components\|dist\|coverage\|temp\/'
 :set ignorecase
 
 "" save on lost focus
