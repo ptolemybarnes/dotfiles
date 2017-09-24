@@ -194,3 +194,9 @@ tnoremap jj <C-\><C-n>
 " maps tab to cycle through menu
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" ale sign gutter always displays
+let g:ale_sign_column_always = 1
+
+" bufferline displays filename relative to current directory
+let g:bufferline_fname_mod = ':.'
