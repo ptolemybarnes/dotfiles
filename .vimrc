@@ -90,9 +90,6 @@ set backupdir=~/.vim/backup//
 set directory=~/.vim/swap//
 set undodir=~/.vim/undo//
 
-" colours the 120 column
-set colorcolumn=100
-
 set cursorline
 highlight CursorLine cterm=NONE ctermbg=236
 " " Set color of number column on cursorline
@@ -200,3 +197,11 @@ let g:ale_sign_column_always = 1
 
 " bufferline displays filename relative to current directory
 let g:bufferline_fname_mod = ':.'
+
+" sets eslint as default fixer for javascript files
+let g:ale_fixers = {
+\   'javascript': ['eslint'],
+\}
+
+" runs :ALEFix on save
+let g:ale_fix_on_save = 1
