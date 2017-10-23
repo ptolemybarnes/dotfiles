@@ -11,46 +11,36 @@ Plug 'roxma/nvim-cm-tern',  {'do': 'npm install'}
 Plug 'leafgarland/typescript-vim'
 Plug 'w0rp/ale'
 Plug 'calebeby/ncm-css'
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
+
+" vim wrapper
+Plug 'tpope/vim-fugitive'
+Plug 'scrooloose/nerdtree'
+Plug 'jlanzarotta/bufexplorer'
+Plug 'bling/vim-bufferline'
+Plug 'bling/vim-airline'
+Plug 'leafgarland/typescript-vim'
+Plug 'Quramy/tsuquyomi'
+Plug 'Shougo/vimproc.vim'
+
+" :Remove :Rename etc
+Plug 'tpope/vim-eunuch'
+
+" Remove buffer without closing split with :BD
+Plug 'qpkorr/vim-bufkill'
+
+" multiple cursors
+Plug 'terryma/vim-multiple-cursors'
+
+" color schemes
+Plug 'tpope/vim-vividchalk'
+Plug 'tomasr/molokai'
+Plug 'chriskempson/vim-tomorrow-theme'
+Plug 'altercation/vim-colors-solarized'
 
 call plug#end()
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-
-" vim wrapper
-Plugin 'tpope/vim-fugitive'
-Plugin 'kien/ctrlp.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'jlanzarotta/bufexplorer'
-Plugin 'bling/vim-bufferline'
-Plugin 'bling/vim-airline'
-Plugin 'leafgarland/typescript-vim'
-Plugin 'Quramy/tsuquyomi'
-Plugin 'Shougo/vimproc.vim'
-
-" :Remove :Rename etc
-Plugin 'tpope/vim-eunuch'
-
-" Remove buffer without closing split with :BD
-Plugin 'qpkorr/vim-bufkill'
-
-" multiple cursors
-Plugin 'terryma/vim-multiple-cursors'
-
-" color schemes
-Plugin 'tpope/vim-vividchalk'
-Plugin 'tomasr/molokai'
-Plugin 'chriskempson/vim-tomorrow-theme'
-Plugin 'altercation/vim-colors-solarized'
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
@@ -134,7 +124,7 @@ let g:airline_left_sep=' '
 let g:airline_right_sep=' '
 
 "" ctrlp config. (ignore compiled js within dist)
-let g:ctrlp_custom_ignore = 'node_modules\|bower_components\|dist\|coverage\|temp\/'
+nmap <C-p> :Files<CR>
 :set ignorecase
 
 "" save on lost focus
@@ -151,16 +141,6 @@ vnoremap <C-r> "hy:%s/<C-r>h//g<left><left>
 
 " sets up a search for the currently highlighted word: CTRL-F
 vnoremap <C-f> "hy/<h
-
-" SYNTASTIC SETTINGS see syntastic-global-options under :help syntastic
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_javascript_eslint_exe = '$(npm bin)/eslint'
-" don't check when saving on exit
-let g:syntastic_check_on_wq = 0
-" stop on first error
-let g:syntastic_aggregate_errors = 0
-" enables signs
-let g:syntastic_enable_signs = 1
 
 " Multi cursor keymappings
 let g:multi_cursor_use_default_mapping=0
