@@ -4,15 +4,22 @@ filetype off                  " required
 " Vim Plugged directory
 call plug#begin('~/.vim/plugged')
 
+" syntax highlighters
+Plug 'digitaltoad/vim-pug'
+
 Plug 'pangloss/vim-javascript'
 Plug 'maxmellon/vim-jsx-pretty'
-Plug 'roxma/nvim-completion-manager'
-Plug 'roxma/nvim-cm-tern',  {'do': 'npm install'}
-Plug 'leafgarland/typescript-vim'
 Plug 'w0rp/ale'
 Plug 'calebeby/ncm-css'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
+Plug 'thoughtbot/vim-rspec'
+Plug 'ajh17/VimCompletesMe'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'junegunn/goyo.vim'
+
+" surround commands
+Plug 'tpope/vim-surround'
 
 " vim wrapper
 Plug 'tpope/vim-fugitive'
@@ -20,9 +27,11 @@ Plug 'scrooloose/nerdtree'
 Plug 'jlanzarotta/bufexplorer'
 Plug 'bling/vim-bufferline'
 Plug 'bling/vim-airline'
-Plug 'leafgarland/typescript-vim'
-Plug 'Quramy/tsuquyomi'
-Plug 'Shougo/vimproc.vim'
+
+" clojure stuff
+Plug 'tpope/vim-fireplace'
+Plug 'guns/vim-clojure-static'
+Plug 'kien/rainbow_parentheses.vim'
 
 " :Remove :Rename etc
 Plug 'tpope/vim-eunuch'
@@ -39,9 +48,14 @@ Plug 'tomasr/molokai'
 Plug 'chriskempson/vim-tomorrow-theme'
 Plug 'altercation/vim-colors-solarized'
 
+Plug 'elixir-editors/vim-elixir'
+
+Plug 'leafgarland/typescript-vim'
+
 call plug#end()
 
-filetype plugin indent on    " required
+filetype plugin indent on
+" required
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
 "
@@ -74,14 +88,18 @@ set visualbell
 set ttyfast
 set ruler
 set laststatus=2
-
-" set path for .swp files
 set backupdir=~/.vim/backup//
-set directory=~/.vim/swap//
 set undodir=~/.vim/undo//
-
+set noswapfile
 set cursorline
+
+" turns on search highlighting
+set hls
+" toggle highlighting off with C-l
+nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
+
 highlight CursorLine cterm=NONE ctermbg=236
+"
 " " Set color of number column on cursorline
 highlight CursorLineNR ctermbg=236 ctermfg=white
 
@@ -98,9 +116,6 @@ inoremap <right> <nop>
 nnoremap j gj
 nnoremap k gk
 nnoremap <CR> :wa<CR>:!!<CR>
-
-"" 
-:au FocusLost * :wa
 
 set nocompatible      " We're running Vim, not Vi!
 
@@ -125,16 +140,9 @@ let g:airline_right_sep=' '
 
 "" ctrlp config. (ignore compiled js within dist)
 nmap <C-p> :Files<CR>
-:set ignorecase
-
-"" save on lost focus
-:au FocusLost * silent! wa
 
 " set relative line numbers
 set relativenumber
-
-" CTRL-S saves the current file
-map <C-s> :w<CR>
 
 " sets up a find and replace for the currently highlighted word
 vnoremap <C-r> "hy:%s/<C-r>h//g<left><left>
@@ -142,7 +150,7 @@ vnoremap <C-r> "hy:%s/<C-r>h//g<left><left>
 " sets up a search for the currently highlighted word: CTRL-F
 vnoremap <C-f> "hy/<h
 
-" Multi cursor keymappings
+" " Multi cursor keymappings
 let g:multi_cursor_use_default_mapping=0
 let g:multi_cursor_next_key='<C-a>'
 let g:multi_cursor_prev_key='<C-p>'
@@ -153,19 +161,11 @@ let g:multi_cursor_quit_key='<Esc>'
 nnoremap <SPACE> :bn<CR>
 nnoremap <BS> :bp<CR>
 
-" run tests
-nnoremap <leader>s :!yarn test<Enter>
-nnoremap <leader>sa :!yarn acceptance<Enter>
-
 " highlight of search results
 hi Search cterm=NONE ctermfg=grey ctermbg=blue
 
-" clears highlighting of search results
-nnoremap <silent> <esc> :noh<cr><esc>
-
-" ===== TERMINAL MODE ======
-" escape kills the buffer
-tnoremap jj <C-\><C-n>
+" clears highlighting of search results - SEEMS TO BREAK THINGS ON FILE OPEN
+" nnoremap <silent> <esc> :noh<cr><esc>
 
 " ===== AUTOCOMPLETE ======
 " maps tab to cycle through menu
@@ -174,14 +174,40 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " ale sign gutter always displays
 let g:ale_sign_column_always = 1
+" let g:ale_lint_on_text_changed = 'never'
+" runs :ALEFix on save
+let g:ale_fix_on_save = 1
+let g:ale_fixers = { 'javascript': [ 'eslint', 'prettier' ] }
 
 " bufferline displays filename relative to current directory
 let g:bufferline_fname_mod = ':.'
 
-" sets eslint as default fixer for javascript files
-let g:ale_fixers = {
-\   'javascript': ['eslint'],
-\}
+set t_vb=
 
-" runs :ALEFix on save
-let g:ale_fix_on_save = 1
+let g:rspec_command = '!bundle exec rspec {spec}'
+" RSpec.vim mappings
+map <Leader>t :call RunCurrentSpecFile()<CR>
+map <Leader>s :call RunNearestSpec()<CR>
+map <Leader>l :call RunLastSpec()<CR>
+map <Leader>a :call RunAllSpecs()<CR>
+
+vmap <Leader>c @*y
+
+" reindent whole file in normal mode with +
+nmap + mzgg=G`z
+
+set backspace=indent,eol,start
+
+autocmd BufRead *.clj try | silent! Require | catch /^Fireplace/ | endtry
+
+" The Silver Searcher
+if executable('ag')
+  " Use ag over grep
+  set grepprg=ag\ --nogroup\ --nocolor
+
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+
+  " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+endif
