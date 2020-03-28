@@ -33,6 +33,9 @@ Plug 'tpope/vim-fireplace'
 Plug 'guns/vim-clojure-static'
 Plug 'kien/rainbow_parentheses.vim'
 
+" rust stuff
+Plug 'rust-lang/rust.vim'
+
 " :Remove :Rename etc
 Plug 'tpope/vim-eunuch'
 
@@ -51,6 +54,14 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'elixir-editors/vim-elixir'
 
 Plug 'leafgarland/typescript-vim'
+
+Plug 'kchmck/vim-coffee-script'
+
+Plug 'martinda/Jenkinsfile-vim-syntax'
+Plug 'dag/vim-fish'
+
+" gutentags - takes care of ctags management
+Plug 'ludovicchabant/vim-gutentags'
 
 call plug#end()
 
@@ -177,7 +188,13 @@ let g:ale_sign_column_always = 1
 " let g:ale_lint_on_text_changed = 'never'
 " runs :ALEFix on save
 let g:ale_fix_on_save = 1
-let g:ale_fixers = { 'javascript': [ 'eslint', 'prettier' ] }
+
+" keys should match against the 'Current Filetype' given on the file by :ALEInfo
+let g:ale_fixers = {
+\  '*': ['remove_trailing_lines', 'trim_whitespace'],
+\  'javascript': [ 'eslint' ],
+\  'javascriptreact': [ 'eslint' ]
+\}
 
 " bufferline displays filename relative to current directory
 let g:bufferline_fname_mod = ':.'
@@ -211,3 +228,9 @@ if executable('ag')
   " ag is fast enough that CtrlP doesn't need to cache
   let g:ctrlp_use_caching = 0
 endif
+
+" setting clipboard to nothing prevents deleted text being sent to clipboard.
+" this behaviour was annoying because typically I want to delete some
+" text then paste from the clipboard. The first action would replace the
+" contents of the clipboard.
+set clipboard=
