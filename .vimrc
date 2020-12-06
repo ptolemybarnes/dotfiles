@@ -18,6 +18,8 @@ Plug 'ajh17/VimCompletesMe'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'junegunn/goyo.vim'
 
+Plug 'derekwyatt/vim-scala'
+
 " surround commands
 Plug 'tpope/vim-surround'
 
@@ -60,8 +62,12 @@ Plug 'kchmck/vim-coffee-script'
 Plug 'martinda/Jenkinsfile-vim-syntax'
 Plug 'dag/vim-fish'
 
+Plug 'martinda/Jenkinsfile-vim-syntax'
 " gutentags - takes care of ctags management
 Plug 'ludovicchabant/vim-gutentags'
+
+" auto-imports for javascript
+Plug 'kristijanhusak/vim-js-file-import'
 
 call plug#end()
 
@@ -103,6 +109,7 @@ set backupdir=~/.vim/backup//
 set undodir=~/.vim/undo//
 set noswapfile
 set cursorline
+set shell=/bin/bash
 
 " turns on search highlighting
 set hls
@@ -143,6 +150,9 @@ noremap L $
 "nerdtree shortcut config
 map <C-n> :NERDTreeToggle<CR>
 let NERDTreeShowHidden=1
+" leader-f finds the current file in nerd tree
+map <leader>f :NERDTreeFind<cr>
+
 
 "airline config
 let g:airline#extensions#tabline#enabled = 1
@@ -153,7 +163,7 @@ let g:airline_right_sep=' '
 nmap <C-p> :Files<CR>
 
 " set relative line numbers
-set relativenumber
+" set relativenumber
 
 " sets up a find and replace for the currently highlighted word
 vnoremap <C-r> "hy:%s/<C-r>h//g<left><left>
@@ -193,7 +203,8 @@ let g:ale_fix_on_save = 1
 let g:ale_fixers = {
 \  '*': ['remove_trailing_lines', 'trim_whitespace'],
 \  'javascript': [ 'eslint' ],
-\  'javascriptreact': [ 'eslint' ]
+\  'javascriptreact': [ 'eslint' ],
+\  'typescript': [ 'eslint', 'standard' ]
 \}
 
 " bufferline displays filename relative to current directory
