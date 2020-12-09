@@ -19,6 +19,7 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'junegunn/goyo.vim'
 
 Plug 'derekwyatt/vim-scala'
+Plug 'fatih/vim-go'
 
 " surround commands
 Plug 'tpope/vim-surround'
@@ -110,6 +111,13 @@ set undodir=~/.vim/undo//
 set noswapfile
 set cursorline
 set shell=/bin/bash
+set autoread                    " Automatically read changed files
+set incsearch                   " Shows the match while typing
+set noerrorbells                " No beeps
+set nobackup                    " Don't create annoying backup files
+set ignorecase                  " Search case insensitive...
+set lazyredraw                  " Wait to redraw
+set autowrite                   " Automatically save before :next, :make etc.
 
 " turns on search highlighting
 set hls
@@ -135,7 +143,19 @@ nnoremap j gj
 nnoremap k gk
 nnoremap <CR> :wa<CR>:!!<CR>
 
-set nocompatible      " We're running Vim, not Vi!
+" GO START
+"
+" Jump to next error with Ctrl-n and previous error with Ctrl-m. Close the
+" quickfix window with <leader>a
+map <leader>n :cnext<CR>
+map <leader>m :cprevious<CR>
+nnoremap <leader>a :cclose<CR>
+
+"" <leader>b builds the Go project
+"" <leader>r runs the Go project
+autocmd FileType go nmap <leader>b  <Plug>(go-build)
+autocmd FileType go nmap <leader>r  <Plug>(go-run)
+" GO END
 
 " map tab to switch split
 map <Tab> <C-W>w
@@ -227,6 +247,8 @@ nmap + mzgg=G`z
 set backspace=indent,eol,start
 
 autocmd BufRead *.clj try | silent! Require | catch /^Fireplace/ | endtry
+
+colorscheme molokai
 
 " The Silver Searcher
 if executable('ag')
