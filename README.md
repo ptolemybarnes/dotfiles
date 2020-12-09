@@ -3,6 +3,7 @@
 - [shiftit](https://github.com/fikovnik/ShiftIt)
 - [tldir](https://www.npmjs.com/package/tldr)
 - [tree](http://mama.indstate.edu/users/ice/tree/) - `brew install tree`
+- [flycut](https://github.com/TermiT/Flycut)
 
 28/3
 
