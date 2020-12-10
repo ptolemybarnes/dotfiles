@@ -1,7 +1,7 @@
 ## Tools
 - [z](https://github.com/rupa/z)
 - [shiftit](https://github.com/fikovnik/ShiftIt)
-- [tldir](https://www.npmjs.com/package/tldr)
+- [tldr](https://www.npmjs.com/package/tldr)
 - [tree](http://mama.indstate.edu/users/ice/tree/) - `brew install tree`
 - [flycut](https://github.com/TermiT/Flycut)
 
