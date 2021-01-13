@@ -9,7 +9,7 @@ Plug 'digitaltoad/vim-pug'
 
 Plug 'pangloss/vim-javascript'
 Plug 'maxmellon/vim-jsx-pretty'
-Plug 'w0rp/ale'
+Plug 'dense-analysis/ale'
 Plug 'calebeby/ncm-css'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
