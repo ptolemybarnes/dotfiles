@@ -116,6 +116,7 @@ set incsearch                   " Shows the match while typing
 set noerrorbells                " No beeps
 set nobackup                    " Don't create annoying backup files
 set ignorecase                  " Search case insensitive...
+set smartcase
 set lazyredraw                  " Wait to redraw
 set autowrite                   " Automatically save before :next, :make etc.
 
@@ -175,7 +176,7 @@ map <leader>f :NERDTreeFind<cr>
 
 
 "airline config
-let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#enabled = 0
 let g:airline_left_sep=' '
 let g:airline_right_sep=' '
 
@@ -267,3 +268,5 @@ endif
 " text then paste from the clipboard. The first action would replace the
 " contents of the clipboard.
 set clipboard=
+
+set title
