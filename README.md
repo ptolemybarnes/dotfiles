@@ -7,6 +7,8 @@
 - [fisher](https://github.com/jorgebucaran/fisher)
 - [sdkman](https://sdkman.io/)
   - [sdkman-for-fish](https://github.com/reitzig/sdkman-for-fish)
+- [ctags](https://formulae.brew.sh/formula/ctags)
+  - set up global .gitignore to ignore `tags` file
 
 28/3
 
