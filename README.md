@@ -9,6 +9,10 @@
   - [sdkman-for-fish](https://github.com/reitzig/sdkman-for-fish)
 - [ctags](https://formulae.brew.sh/formula/ctags)
   - set up global .gitignore to ignore `tags` file
+- [iterm](https://iterm2.com/)
+  - key bindings
+    - ctrl+h bind to esc+b, jump back a word.
+    - ctrl+l bind to esc+f, jump forward a word.
 
 28/3
 
