@@ -1,0 +1,4 @@
+# aws dynamodb tables metadata
+for table in (aws --region=eu-central-1 dynamodb list-tables | jq -r ".TableNames | .[]");
+  aws --region=eu-central-1 dynamodb describe-table --table-name $table
+end

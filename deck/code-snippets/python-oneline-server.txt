@@ -1,0 +1,2 @@
+# python oneline static http server
+python -m http.server 9000
