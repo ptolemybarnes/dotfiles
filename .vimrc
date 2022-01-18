@@ -112,7 +112,7 @@ set laststatus=2
 set undodir=~/.vim/undo//
 set noswapfile
 set cursorline
-set shell=/bin/bash
+set shell=/opt/homebrew/bin/fish
 set autoread                    " Automatically read changed files
 set incsearch                   " Shows the match while typing
 set noerrorbells                " No beeps
