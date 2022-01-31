@@ -72,6 +72,9 @@ Plug 'ludovicchabant/vim-gutentags'
 
 " auto-imports for javascript
 " Plug 'kristijanhusak/vim-js-file-import'
+"
+Plug 'evanleck/vim-svelte', {'branch': 'main'}
+
 
 call plug#end()
 
