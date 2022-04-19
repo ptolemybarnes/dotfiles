@@ -1,0 +1,2 @@
+# run node http echo server
+node $SNIPPETS_PATH/node-echo-server.js 6567

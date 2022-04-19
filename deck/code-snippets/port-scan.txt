@@ -1,0 +1,2 @@
+# port scan
+lsof -ti:8888
