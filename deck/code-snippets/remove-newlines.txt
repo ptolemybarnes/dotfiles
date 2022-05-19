@@ -1,0 +1,2 @@
+# remove trim new lines newlines
+pbpaste | tr -d '\n'
