@@ -1,16 +1,11 @@
 set nocompatible              " be iMproved, required
-filetype off                  " required
 
 " Vim Plugged directory
 call plug#begin('~/.vim/plugged')
 
-" syntax highlighters
-Plug 'digitaltoad/vim-pug'
-
 Plug 'pangloss/vim-javascript'
-" Plug 'maxmellon/vim-jsx-pretty'
+Plug 'maxmellon/vim-jsx-pretty'
 Plug 'dense-analysis/ale'
-Plug 'calebeby/ncm-css'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'thoughtbot/vim-rspec'
@@ -18,9 +13,9 @@ Plug 'ajh17/VimCompletesMe'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'junegunn/goyo.vim'
 
-Plug 'derekwyatt/vim-scala'
-Plug 'fatih/vim-go'
 Plug 'romainl/vim-cool'
+
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " surround commands
 Plug 'tpope/vim-surround'
@@ -29,8 +24,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/nerdtree'
 Plug 'jlanzarotta/bufexplorer'
-Plug 'bling/vim-bufferline'
-Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline'
 
 " clojure stuff
 Plug 'tpope/vim-fireplace'
@@ -38,9 +32,6 @@ Plug 'guns/vim-clojure-static'
 Plug 'kien/rainbow_parentheses.vim'
 
 Plug 'hashivim/vim-terraform'
-
-" rust stuff
-Plug 'rust-lang/rust.vim'
 
 " :Remove :Rename etc
 Plug 'tpope/vim-eunuch'
@@ -57,23 +48,13 @@ Plug 'tomasr/molokai'
 Plug 'chriskempson/vim-tomorrow-theme'
 Plug 'altercation/vim-colors-solarized'
 
-Plug 'elixir-editors/vim-elixir'
-
-Plug 'leafgarland/typescript-vim'
-
-Plug 'kchmck/vim-coffee-script'
-
-Plug 'martinda/Jenkinsfile-vim-syntax'
 Plug 'dag/vim-fish'
 
-Plug 'martinda/Jenkinsfile-vim-syntax'
 " gutentags - takes care of ctags management
 Plug 'ludovicchabant/vim-gutentags'
 
-" auto-imports for javascript
-" Plug 'kristijanhusak/vim-js-file-import'
-"
-Plug 'evanleck/vim-svelte', {'branch': 'main'}
+" sets up stuff probably so node packages work correctly in vim
+Plug 'marene/nvm.vim'
 
 
 call plug#end()
@@ -103,6 +84,7 @@ set modelines=0
 set encoding=utf-8
 set scrolloff=3
 set autoindent
+set smartindent
 set showmode
 set showcmd
 set hidden
@@ -219,19 +201,29 @@ hi Search cterm=NONE ctermfg=grey ctermbg=blue
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
+" Make sure to use map instead of noremap when using a <Plug>(...) expression as the {rhs}
+nmap gr <Plug>(ale_rename)
+nmap gR <Plug>(ale_find_reference)
+nmap gd <Plug>(ale_go_to_definition)
+nmap gD <Plug>(ale_go_to_type_definition)
+
 " ale sign gutter always displays
 let g:ale_sign_column_always = 1
+
 " let g:ale_lint_on_text_changed = 'never'
 " runs :ALEFix on save
 let g:ale_fix_on_save = 1
 
+autocmd FileType typescript set omnifunc=ale#completion#OmniFunc
+
 " keys should match against the 'Current Filetype' given on the file by :ALEInfo
 let g:ale_fixers = {
 \  '*': ['remove_trailing_lines', 'trim_whitespace'],
-\  'javascript': [ 'eslint' ],
-\  'javascriptreact': [ 'eslint' ],
-\  'typescript': [ 'eslint', 'standard' ]
+\  'typescript': [ 'deno' ],
+\  'json': ['jq']
 \}
+
+let g:ale_linters_ignore = {'json': ['eslint']}
 
 " bufferline displays filename relative to current directory
 let g:bufferline_fname_mod = ':.'
@@ -258,9 +250,6 @@ colorscheme molokai
 
 " The Silver Searcher
 if executable('ag')
-  " Use ag over grep
-  set grepprg=ag\ --nogroup\ --nocolor
-
   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 
