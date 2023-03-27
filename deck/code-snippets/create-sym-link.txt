@@ -1,0 +1,2 @@
+# create sym link symlink
+ln -s /path/to/original /path/to/link

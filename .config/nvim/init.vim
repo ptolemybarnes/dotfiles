@@ -88,4 +88,9 @@ Plug 'qpkorr/vim-bufkill'
 Plug 'dag/vim-fish'
 """"""""""""""""""""""""""
 
+"""""vim-eunuch"""""""""""
+" Vim sugar for the UNIX shell commands
+Plug 'tpope/vim-eunuch'
+""""""""""""""""""""""""""
+
 call plug#end()
