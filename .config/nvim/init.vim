@@ -1,14 +1,12 @@
-call plug#begin('~/.vim/plugged')
-
 set nocompatible            " disable compatibility to old-time vi
 set showmatch               " show matching brace / bracket
 set ignorecase              " case insensitive
 set hlsearch                " highlight search
 set incsearch               " incremental search
-set tabstop=4               " number of columns occupied by a tab
-set softtabstop=4           " see multiple spaces as tabstops so <BS> does the right thing
+set tabstop=2               " number of columns occupied by a tab
+set softtabstop=2           " see multiple spaces as tabstops so <BS> does the right thing
 set expandtab               " converts tabs to white space
-set shiftwidth=4            " width for autoindents
+set shiftwidth=2            " width for autoindents
 set autoindent              " indent a new line the same amount as the line just typed
 set number                  " add line numbers
 set wildmode=longest,list   " get bash-like tab completions
@@ -28,14 +26,13 @@ set ttyfast                 " Speed up scrolling in Vim
 set noswapfile              " disable creating swap file
 set termguicolors
 
-"""""""GENERAL-SHORTCUTS"""""""""""
+"""""""""""""""SHORTCUTS"""""""""""
 inoremap jj <ESC>
 
 "Shift left/right take you to end of line - everyone should have this.
 noremap H ^
 noremap L $
-" toggle highlighting off with C-l
-" nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
+
 " sets up a find and replace for the currently highlighted word
 vnoremap <C-r> "hy:%s/<C-r>h//g<left><left>
 " sets up a search for the currently highlighted word: CTRL-F
@@ -46,12 +43,13 @@ map <Tab> <C-W>w
 nnoremap <SPACE> :bn<CR>
 nnoremap <BS> :bp<CR>
 
-" clear search result with CTRL+_
+" clear highlighted search result with CTRL+_
 nnoremap <C-_> :noh<CR>
 
-"""""""END-OF-GENERAL-SHORTCUTS"""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"""""""GENERAL-PLUGINS""""""""""""""""
+"""""""""""""PLUGINS"""""""""""""""""""""""""""""""""""
+call plug#begin('~/.vim/plugged')
 
 """"""""NERD-TREE""""""""""
 Plug 'scrooloose/nerdtree'
@@ -75,7 +73,8 @@ Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
 Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
 """"""""""""""""""""""""""
 
-"""""BUFF-EXPLORER"""""""
+"""""BUF-EXPLORER"""""""""
+" <Leader>bt opens buffer explorer
 Plug 'jlanzarotta/bufexplorer'
 """""""""""""""""""""""""
 
