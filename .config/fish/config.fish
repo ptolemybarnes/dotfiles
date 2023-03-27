@@ -6,7 +6,7 @@ set -x SNIPPETS_PATH /Users/ptolemy/deck/code-snippets
 set -x SHELL /opt/homebrew/bin/fish
 # use fd for fzf, as fd respects .gitignore
 set -x FZF_DEFAULT_COMMAND 'fd --type f --strip-cwd-prefix'
-set -x $VIMRC ~/.config/nvim/init.vim
+set -x VIMRC ~/.config/nvim/init.vim
 
 fish_add_path /opt/homebrew/bin
 fish_add_path (brew --prefix)/opt/findutils/libexec/gnubin
