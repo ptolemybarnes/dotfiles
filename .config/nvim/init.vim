@@ -70,6 +70,15 @@ let NERDTreeShowHidden=1
 map <leader>f :NERDTreeFind<cr>
 """""""""""""""""""""""""""
 
+
+""""""neovim/nvim-lspconfig""""""
+Plug 'neovim/nvim-lspconfig'
+"""""""""""""""""""""""""""
+
+"""""ms-jpq/coq_nvim"""""""""""""
+Plug 'ms-jpq/coq_nvim'
+"""""""""""""""""""""""""""
+
 """"""""lightline.vim"""""
 Plug 'itchyny/lightline.vim'
 """""""""""""""""""""""""""
@@ -114,9 +123,19 @@ Plug 'szw/vim-maximizer'
 """""""tokyonight colorscheme""""
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 """""""""""""""""""""""""""""""""
+"
+""""""""nvim-treesitter""""""""""""""""
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+""""""""""""""""""""""""""""""""""""""""
+
 
 call plug#end()
 
 """""""""""""""""colors""""""""""""""""""""""
 colorscheme tokyonight-storm
-let g:lightline = {'colorscheme': 'tokyonight-storm'}
+
+let g:lightline = {'colorscheme': 'tokyonight'}
+
+lua require'nvim-treesitter.configs'.setup{highlight={enable=true},ensure_installed = { "c", "lua", "vim", "help", "query" }}
+
+
