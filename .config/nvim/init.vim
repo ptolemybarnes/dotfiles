@@ -1,4 +1,7 @@
 set nocompatible            " disable compatibility to old-time vi
+set completeopt=menuone,noinsert,noselect
+set splitright
+set splitbelow
 set showmatch               " show matching brace / bracket
 set ignorecase              " case insensitive
 set hlsearch                " highlight search
@@ -7,10 +10,17 @@ set tabstop=2               " number of columns occupied by a tab
 set softtabstop=2           " see multiple spaces as tabstops so <BS> does the right thing
 set expandtab               " converts tabs to white space
 set shiftwidth=2            " width for autoindents
+set nowritebackup
+set cmdheight=1
+set shortmess+=c
+set signcolumn=yes
+set updatetime=750
+set smartcase               " search case-insensitive, except if I enter uppercase letters.
 set autoindent              " indent a new line the same amount as the line just typed
-set number                  " add line numbers
+set number                  " add absolute line numbers
 set wildmode=longest,list   " get bash-like tab completions
 filetype plugin indent on   " allow auto-indenting depending on file type
+let g:netrw_banner=0
 syntax on                   " syntax highlighting
 "
 " setting clipboard to nothing prevents deleted text being sent to clipboard.
@@ -19,13 +29,10 @@ syntax on                   " syntax highlighting
 " contents of the clipboard.
 set clipboard=
 
-filetype plugin on
 set cursorline              " highlight current cursorline
 set ttyfast                 " Speed up scrolling in Vim
 " set spell                 " enable spell check (may need to download language package)
 set noswapfile              " disable creating swap file
-set termguicolors
-
 """""""""""""""SHORTCUTS"""""""""""
 inoremap jj <ESC>
 
@@ -46,6 +53,9 @@ nnoremap <BS> :bp<CR>
 " clear highlighted search result with CTRL+_
 nnoremap <C-_> :noh<CR>
 
+" '<leader>v' opens this file
+nnoremap <leader>v :e $VIMRC<CR>
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""PLUGINS"""""""""""""""""""""""""""""""""""
@@ -58,8 +68,11 @@ map <C-n> :NERDTreeToggle<CR>
 let NERDTreeShowHidden=1
 " leader-f finds the current file in nerd tree
 map <leader>f :NERDTreeFind<cr>
-"^^^^^NERD-TREE^^^^^^^^^^^
+"""""""""""""""""""""""""""
 
+""""""""lightline.vim"""""
+Plug 'itchyny/lightline.vim'
+"""""""""""""""""""""""""""
 
 """""""FZF.VIM"""""""""""""
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -93,4 +106,17 @@ Plug 'dag/vim-fish'
 Plug 'tpope/vim-eunuch'
 """"""""""""""""""""""""""
 
+"""""vim-maximizer""""""""
+" maximise current split with F3
+Plug 'szw/vim-maximizer'
+""""""""""""""""""""""""""
+
+"""""""tokyonight colorscheme""""
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+"""""""""""""""""""""""""""""""""
+
 call plug#end()
+
+"""""""""""""""""colors""""""""""""""""""""""
+colorscheme tokyonight-storm
+let g:lightline = {'colorscheme': 'tokyonight-storm'}

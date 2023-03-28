@@ -1,7 +1,6 @@
 source ~/.config/fish/aliases.fish
 
 alias vim=nvim
-set -x EDITOR vim
 set -x SNIPPETS_PATH /Users/ptolemy/deck/code-snippets
 set -x SHELL /opt/homebrew/bin/fish
 # use fd for fzf, as fd respects .gitignore
@@ -18,8 +17,6 @@ status is-login; and pyenv init --path | source
 status is-interactive; and pyenv init - | source
 
 fish_default_key_bindings
-
-nvm use default
 
 [ -s "/Users/ptolemy/.jabba/jabba.fish" ]; and source "/Users/ptolemy/.jabba/jabba.fish"
 set -g fish_user_paths "/usr/local/opt/openssl@1.1/bin" $fish_user_paths
