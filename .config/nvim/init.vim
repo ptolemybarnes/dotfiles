@@ -75,10 +75,6 @@ map <leader>f :NERDTreeFind<cr>
 Plug 'neovim/nvim-lspconfig'
 """""""""""""""""""""""""""
 
-"""""ms-jpq/coq_nvim"""""""""""""
-Plug 'ms-jpq/coq_nvim'
-"""""""""""""""""""""""""""
-
 """"""""lightline.vim"""""
 Plug 'itchyny/lightline.vim'
 """""""""""""""""""""""""""
@@ -123,10 +119,16 @@ Plug 'szw/vim-maximizer'
 """""""tokyonight colorscheme""""
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 """""""""""""""""""""""""""""""""
-"
+
 """"""""nvim-treesitter""""""""""""""""
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 """"""""""""""""""""""""""""""""""""""""
+
+"""""Plug 'David-Kunz/markid'"""""""""""
+" highlights same-name identifiers with the same color.
+Plug 'David-Kunz/markid'
+""""""""""""""""""""""""""""""""""""""""
+
 
 
 call plug#end()
@@ -136,9 +138,11 @@ colorscheme tokyonight-storm
 
 let g:lightline = {'colorscheme': 'tokyonight'}
 
-lua require'nvim-treesitter.configs'.setup{highlight={enable=true},ensure_installed = { "c", "lua", "vim", "help", "query" }}
+" sets up treesitter language support with required plugins (has to be oneline)
+lua require'nvim-treesitter.configs'.setup{highlight={enable=true},ensure_installed = { "c", "lua", "vim", "help", "query" },markid = { enable = true }}
 
 " enables language support for javascript with quick-lint-js
 " brew install quick-lint-js
 lua require('lspconfig/quick_lint_js').setup {}
 
+let g:coq_settings = { 'auto_start': v:true }
