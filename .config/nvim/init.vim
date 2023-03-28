@@ -138,4 +138,7 @@ let g:lightline = {'colorscheme': 'tokyonight'}
 
 lua require'nvim-treesitter.configs'.setup{highlight={enable=true},ensure_installed = { "c", "lua", "vim", "help", "query" }}
 
+" enables language support for javascript with quick-lint-js
+" brew install quick-lint-js
+lua require('lspconfig/quick_lint_js').setup {}
 
