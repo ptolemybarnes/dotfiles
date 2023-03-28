@@ -86,9 +86,10 @@ nnoremap <silent> <C-p> :FZF<CR>
 """""""""""""""""""""""""""
 
 """""""COQ.NVIM"""""""""""
+" this is what does the autocompletion stuff
 Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
-" 9000+ Snippets
 Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
+Plug 'ms-jpq/coq.thirdparty', {'branch': '3p'}
 """"""""""""""""""""""""""
 
 """""BUF-EXPLORER"""""""""
@@ -128,8 +129,6 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " highlights same-name identifiers with the same color.
 Plug 'David-Kunz/markid'
 """"""""""""""""""""""""""""""""""""""""
-
-
 
 call plug#end()
 
