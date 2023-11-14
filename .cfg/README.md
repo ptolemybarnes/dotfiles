@@ -13,6 +13,7 @@
   - key bindings
     - ctrl+h bind to esc+b, jump back a word.
     - ctrl+l bind to esc+f, jump forward a word.
+- [fx](https://fx.wtf/) - `brew install fx`
 
 28/3
 
