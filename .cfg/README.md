@@ -1,10 +1,12 @@
 ## Tools
-- [z](https://github.com/rupa/z)
-- [shiftit](https://github.com/fikovnik/ShiftIt)
+- [fish](https://fishshell.com/)
+    - [fisher](https://github.com/jorgebucaran/fisher)
+    - [z](https://github.com/jethrokuan/z)
+- [hammerspoon](https://www.hammerspoon.org/)
+    - [ShiftIt](https://github.com/peterklijn/hammerspoon-shiftit)
 - [tldr](https://www.npmjs.com/package/tldr)
 - [tree](http://mama.indstate.edu/users/ice/tree/) - `brew install tree`
 - [flycut](https://github.com/TermiT/Flycut)
-- [fisher](https://github.com/jorgebucaran/fisher)
 - [sdkman](https://sdkman.io/)
   - [sdkman-for-fish](https://github.com/reitzig/sdkman-for-fish)
 - [ctags](https://formulae.brew.sh/formula/ctags)
