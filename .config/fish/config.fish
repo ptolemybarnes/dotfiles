@@ -7,11 +7,12 @@ set -x SHELL /opt/homebrew/bin/fish
 set -x FZF_DEFAULT_COMMAND 'fd --type f --strip-cwd-prefix'
 set -x VIMRC ~/.config/nvim/init.vim
 
+source ~/.config/fish/tokens.fish
+
 fish_add_path /opt/homebrew/bin
-fish_add_path (brew --prefix)/opt/findutils/libexec/gnubin
-fish_add_path (brew --prefix)/opt/gnu-sed/libexec/gnubin
-fish_add_path ./node_modules/.bin
 fish_add_path /usr/local/bin
+fish_add_path (go env GOPATH)/bin
+fish_add_path /opt/homebrew/opt/mysql@8.0/bin
 
 status is-login; and pyenv init --path | source
 status is-interactive; and pyenv init - | source
